@@ -1,15 +1,15 @@
 import { lazy, Suspense } from 'react'
 import './App.css'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Loader from './components/loader/Loader';
 
-// Dynamically import the components
 const Home = lazy(() => import('./components/pages/HomePage'));
 const Chats = lazy(() => import('./components/pages/ChatPage'));
 
 function App() {
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/chats' element={<Chats />} />

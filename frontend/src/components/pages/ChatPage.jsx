@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { fetchChats } from '../../services/chatsApi'
+import Loader from '../loader/Loader'
 
 function ChatPage() {
     const [chats, setChats] = useState([])
@@ -10,7 +11,9 @@ function ChatPage() {
     }, [])
 
     return (
-        <div>ChatPage</div>
+        <div>
+            <Loader />
+        </div>
     )
 }
 
