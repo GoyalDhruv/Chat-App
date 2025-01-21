@@ -10,8 +10,8 @@ app.use(cors())
 app.use(express.json());
 connectDB()
 
-app.use('/api/user', userRoutes)
-const PORT = process.env.PORT || 5000
+app.use('/v1/api/user', userRoutes)
+const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
