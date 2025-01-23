@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/connectDb.js';
 import userRoutes from './routes/user.routes.js';
+import chatRoutes from './routes/chat.routes.js';
 dotenv.config()
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(express.json());
 connectDB()
 
 app.use('/v1/api/user', userRoutes)
+app.use('/v1/api/chat', chatRoutes)
 const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => {

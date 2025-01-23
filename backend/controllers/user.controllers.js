@@ -74,3 +74,24 @@ export const loginUser = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 }
+
+export const getUser = async (req, res) => {
+    try {
+        const user=req.user
+        const keyword = req.query.search;
+        let filter = {};
+        if (keyword) {
+            filter = {
+                $or: [
+                    { name: { $regex: keyword, $options: "i" } },
+                    { email: { $regex: keyword, $options: "i" } }
+                ]
+            };
+        }
+        const users = await User.find(filter).find({_id: { $ne: user._id }});
+        res.json({ data: users });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
