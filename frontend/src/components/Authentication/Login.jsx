@@ -5,12 +5,16 @@ import Button from '@mui/material/Button';
 import { FormControl, IconButton, Input, InputAdornment, InputLabel } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import toast from 'react-hot-toast';
+import { loginUser } from '../../services/userApi';
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate()
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -21,6 +25,30 @@ function Login() {
     const handleMouseUpPassword = (event) => {
         event.preventDefault();
     };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (!email || !password) {
+            toast.error('Both email and password are required');
+            return;
+        }
+        try {
+            const formData = {
+                email,
+                password
+            }
+
+            const { data } = await loginUser(formData)
+            localStorage.setItem('chat_app', JSON.stringify(data))
+            toast.success('User logged in successfully');
+            setEmail('');
+            setPassword('');
+            navigate('/chats')
+        } catch (error) {
+            toast.error(error.response.data.message);
+            console.error(error);
+        }
+    }
 
     return (
         <Box
@@ -59,7 +87,7 @@ function Login() {
                         }
                     />
                 </FormControl>
-                <Button type='Submit' variant="contained" className='col-span-12'>Submit</Button>
+                <Button type='Submit' variant="contained" className='col-span-12' onClick={handleSubmit}>Submit</Button>
             </div>
         </Box>
     )

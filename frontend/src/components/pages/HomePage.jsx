@@ -16,19 +16,17 @@ function HomePage() {
     };
 
     return (
-        <div className='w-100 lg:mx-96 py-20'>
-            <div className="row">
-                <div className='col-12 text-center bg-white p-3 rounded-xl'>
+        <div className='w-100 lg:mx-96 mx-10 py-20'>
+            <div className="grid grid-cols-12">
+                <div className='col-span-12 text-center bg-white p-3 rounded-xl'>
                     <span className='text-4xl'>Chat App</span>
                 </div>
-                <Box className="col-12 bg-white p-3 rounded-xl mt-3">
+                <Box className="col-span-12 bg-white p-3 rounded-xl mt-3">
                     <TabContext value={activeTab}>
-                        <Box>
-                            <TabList onChange={handleChange}>
-                                <Tab label="Login" value="Login" className='col-6' />
-                                <Tab label="SignUp" value="SignUp" className='col-6' />
-                            </TabList>
-                        </Box>
+                        <TabList onChange={handleChange}>
+                            <Tab label="Login" value="Login" />
+                            <Tab label="SignUp" value="SignUp" />
+                        </TabList>
                         <TabPanel value="Login"><Login /></TabPanel>
                         <TabPanel value="SignUp"><SignUp /></TabPanel>
                     </TabContext>
