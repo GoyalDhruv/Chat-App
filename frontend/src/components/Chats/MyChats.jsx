@@ -59,9 +59,11 @@ function MyChats() {
                     <Stack className='overflow-y-scroll scrollbar-hide '>
                         {chats.map(chat => (
                             <Box key={chat._id} className={`${selectedChat === chat ? "bg-[#38B2AC] white" : "bg-[#E8E8E8] white"} py-2 px-3 my-1 rounded-lg cursor-pointer`} onClick={() => setSelectedChat(chat)}>
-                                {!chat?.isGroupChat ?
-                                    getSender(loggedUser, chat?.users)
-                                    : chat?.chatName}
+                                <span className='capitalize'>
+                                    {!chat?.isGroupChat ?
+                                        getSender(loggedUser, chat?.users)
+                                        : chat?.chatName}
+                                </span>
                                 {/* <div className='flex items-center'>
                                     <img src={chat.user.pic} alt={chat.user.name} className='rounded-full w-10 h-10' />
                                     <p className='ml-2'>{chat.user.name}</p>

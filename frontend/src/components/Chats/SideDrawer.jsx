@@ -6,11 +6,9 @@ import SkeletonLoader from '../loader/SkeletonLoader';
 import { accessChats } from '../../services/chatsApi';
 import { ChatState } from '../../context/ChatProvider';
 
-function SideDrawer({ open, onClose }) {
-    const { setSelectedChat, chats, setChats } = ChatState()
-    const [search, setSearch] = useState('');
+function SideDrawer({ open, onClose, search, setSearch, users, setUsers }) {
+    const { user, setSelectedChat, chats, setChats } = ChatState()
     const [loading, setLoading] = useState(false);
-    const [users, setUsers] = useState([]);
 
     const handleSearch = async () => {
         if (!search) {
@@ -31,8 +29,17 @@ function SideDrawer({ open, onClose }) {
 
     const accessChat = async (userId) => {
         try {
-            const { data } = await accessChats(userId);
+            const existingChat = chats?.filter(chat => chat?.isGroupChat == false)?.find(c =>
+                c.users.some(existingUser => existingUser._id === user?.id) &&
+                c.users.some(existingUser => existingUser._id === userId)
+            );
 
+            if (existingChat) {
+                setSelectedChat(existingChat);
+                onClose();
+                return;
+            }
+            const { data } = await accessChats(userId);
             if (!chats?.find(c => c.id === data?._id)) {
                 setChats([data, ...chats])
             }

@@ -19,6 +19,8 @@ import SideDrawer from './SideDrawer';
 
 export default function NavBar() {
     const { user } = ChatState()
+    const [search, setSearch] = useState('');
+    const [users, setUsers] = useState([]);
     const [anchorEl, setAnchorEl] = useState(null);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
@@ -35,6 +37,8 @@ export default function NavBar() {
 
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
+        setSearch('');
+        setUsers([]);
     };
 
     const logoutHandler = () => {
@@ -111,7 +115,14 @@ export default function NavBar() {
             </AppBar>
             {renderMenu}
 
-            <SideDrawer open={open} onClose={toggleDrawer(false)} />
+            <SideDrawer
+                open={open}
+                onClose={toggleDrawer(false)}
+                search={search}
+                setSearch={setSearch}
+                setUsers={setUsers}
+                users={users}
+            />
         </Box>
     );
 }
