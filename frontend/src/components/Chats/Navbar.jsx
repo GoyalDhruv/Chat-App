@@ -10,15 +10,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import Drawer from '@mui/material/Drawer';
-import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { ChatState } from '../../context/ChatProvider';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CustomAvatar from './CustomAvatar';
 import ProfileModal from './ProfileModal';
 import { useNavigate } from 'react-router-dom';
+import SideDrawer from './SideDrawer';
 
 export default function NavBar() {
     const { user } = ChatState()
@@ -72,23 +69,6 @@ export default function NavBar() {
         </Menu>
     );
 
-    const DrawerList = (
-        <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-            <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
-        </Box>
-    );
-
     return (
         <Box>
             <AppBar position="static">
@@ -124,7 +104,6 @@ export default function NavBar() {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            {/* <AccountCircle /> */}
                             <CustomAvatar name={user?.name} />
                         </IconButton>
                     </Box>
@@ -132,9 +111,7 @@ export default function NavBar() {
             </AppBar>
             {renderMenu}
 
-            <Drawer open={open} onClose={toggleDrawer(false)}>
-                {DrawerList}
-            </Drawer>
+            <SideDrawer open={open} onClose={toggleDrawer(false)} />
         </Box>
     );
 }

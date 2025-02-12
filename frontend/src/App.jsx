@@ -8,7 +8,7 @@ const Chats = lazy(() => import('./components/pages/ChatPage'));
 
 function App() {
   return (
-    <div className='App min-h-screen flex'>
+    <div className='App min-h-screen'>
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path='/' element={<Home />} />

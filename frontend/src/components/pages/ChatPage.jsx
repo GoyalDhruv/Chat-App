@@ -20,15 +20,15 @@ function ChatPage() {
     return (
         <>
             {user &&
-                <div>
+                <>
                     <header className='w-screen'>
                         <NavBar />
                     </header>
-                    <Box className=''>
+                    <Box className='flex p-[10px] h-[650px]'>
                         <MyChats />
                         <ChatBox />
                     </Box>
-                </div>
+                </>
             }
             {/* <Loader /> */}
         </>
