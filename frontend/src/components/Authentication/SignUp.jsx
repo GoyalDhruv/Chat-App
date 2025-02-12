@@ -10,18 +10,6 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { registerUser } from '../../services/userApi';
 import toast from 'react-hot-toast';
 
-// const VisuallyHiddenInput = styled('input')({
-//     clip: 'rect(0 0 0 0)',
-//     clipPath: 'inset(50%)',
-//     height: 1,
-//     overflow: 'hidden',
-//     position: 'absolute',
-//     bottom: 0,
-//     left: 0,
-//     whiteSpace: 'nowrap',
-//     width: 1,
-// });
-
 function SignUp() {
 
     const [name, setName] = useState('');
@@ -30,7 +18,6 @@ function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState('');
-    // const [picture, setPicture] = useState('');
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show);

@@ -3,7 +3,7 @@ import  {CircleLoader} from 'react-spinners'
 
 function Loader() {
     return (
-        <div className='h-screen w-100 flex items-center justify-center'>
+        <div className='h-screen w-screen flex items-center justify-center'>
             <CircleLoader />
         </div>
     )

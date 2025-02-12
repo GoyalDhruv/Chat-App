@@ -57,18 +57,18 @@ function Login() {
             noValidate
             autoComplete="off"
         >
-            <div className='grid grid-cols-12 gap-5'>
+            <div className='grid grid-cols-12 md:gap-5'>
                 <TextField
                     required
                     variant="standard"
                     label="Email"
                     type="email"
-                    className='md:col-span-6 w-100'
+                    className='md:col-span-6 col-span-12 w-100'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
 
-                <FormControl className='md:col-span-6 w-100' variant="standard">
+                <FormControl className='md:col-span-6 col-span-12 w-100' variant="standard">
                     <InputLabel>Password</InputLabel>
                     <Input
                         value={password}
@@ -87,7 +87,7 @@ function Login() {
                         }
                     />
                 </FormControl>
-                <Button type='Submit' variant="contained" className='col-span-12' onClick={handleSubmit}>Submit</Button>
+                <Button type='Submit' variant="contained" className='col-span-12 mt-4' onClick={handleSubmit}>Submit</Button>
             </div>
         </Box>
     )
