@@ -69,9 +69,9 @@ function SideDrawer({ open, onClose, search, setSearch, users, setUsers }) {
                 </div>
                 <List className='mt-1'>
                     {loading ?
-                        <SkeletonLoader />
+                        <SkeletonLoader number={13} />
                         :
-                        users.map((user) => (
+                        users?.map((user) => (
                             <ListItem key={user._id} className='p-0 border rounded-lg bg-gray-200 my-1'>
                                 <ListItemButton onClick={() => accessChat(user._id)}>
                                     <ListItemIcon>

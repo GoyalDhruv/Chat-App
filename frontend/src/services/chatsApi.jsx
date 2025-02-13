@@ -35,3 +35,18 @@ export const fetchChats = async () => {
         console.error(error);
     }
 }
+
+export const createGroupChat = async (data) => {
+    try {
+        const formData = await axios.post(`${BASE_URL}/chat/group`, data,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `${token}`
+                }
+            });
+        return formData?.data;
+    } catch (error) {
+        console.error(error);
+    }
+}

@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import SkeletonLoader from '../loader/SkeletonLoader';
 import { Stack } from '@mui/material';
+import GroupChatModal from './GroupChatModal';
 
 function MyChats() {
 
@@ -52,7 +53,9 @@ function MyChats() {
         >
             <Box className='pb-3 px-3 text-2xl grid grid-cols-12 w-full'>
                 <span className='col-span-12 xl:col-span-6'>My Chats</span>
-                <Button className='col-span-12 xl:col-span-6' variant='contained'>New Group Chat</Button>
+                <GroupChatModal>
+                    <Button className='w-100' variant='contained'>New Group Chat</Button>
+                </GroupChatModal>
             </Box>
             <Box className='flex flex-col p-3 bg-[#F8F8F8] w-100 h-100 rounded-lg overflow-y-hidden'>
                 {chats ?
@@ -76,7 +79,7 @@ function MyChats() {
                         ))}
                     </Stack>
                     :
-                    <SkeletonLoader />
+                    <SkeletonLoader number={8}/>
                 }
             </Box>
         </Box>

@@ -1,22 +1,12 @@
 import { Skeleton } from '@mui/material'
 import React from 'react'
 
-function SkeletonLoader() {
+function SkeletonLoader({ number }) {
     return (
         <>
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
-            <Skeleton height={40} />
+            {Array.from({ length: number }, (_, index) => (
+                <Skeleton key={index} height={40} />
+            ))}
         </>
     )
 }
