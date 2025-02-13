@@ -69,6 +69,12 @@ export default function GroupChatModal({ children }) {
             toast.error("Please fill all the fields");
             return;
         }
+
+        if (selectedUsers?.length < 2) {
+            toast.error("Group chat requires at least 2 users");
+            return;
+        }
+
         try {
             const formData = {
                 name: groupChatName,

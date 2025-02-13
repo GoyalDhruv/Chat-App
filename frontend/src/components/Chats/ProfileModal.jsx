@@ -28,7 +28,7 @@ export default function ProfileModal({ user, children }) {
                 children ?
                     <span onClick={handleOpen}>{children}</span>
                     :
-                    <Button onClick={handleOpen}>
+                    <Button onClick={handleOpen} variant='contained'>
                         <VisibilityIcon />
                     </Button>
             }

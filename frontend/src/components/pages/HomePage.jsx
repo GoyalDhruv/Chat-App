@@ -26,7 +26,7 @@ function HomePage() {
     }, [navigate])
 
     return (
-        <div className='w-100 xl:mx-96 mx-10 py-20'>
+        <div className='w-100 xl:px-96 px-10 py-20'>
             <div className="grid grid-cols-12">
                 <div className='col-span-12 text-center bg-white p-3 rounded-xl'>
                     <span className='text-4xl'>Chat App</span>

@@ -1,8 +1,9 @@
 import React from 'react'
 import { ChatState } from '../../context/ChatProvider'
 import Box from '@mui/material/Box';
+import SingleChat from './SingleChat';
 
-function ChatBox() {
+function ChatBox({ fetchAgain, setFetchAgain }) {
     const { selectedChat } = ChatState();
     return (
         <Box
@@ -17,7 +18,7 @@ function ChatBox() {
                 border: '1px solid',
                 borderColor: 'grey.200',
             }}
-        >Chat Box</Box>
+        ><SingleChat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} /></Box>
     )
 }
 

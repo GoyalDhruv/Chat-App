@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import SideDrawer from './SideDrawer';
 
 export default function NavBar() {
-    const { user } = ChatState()
+    const { user, setSelectedChat, setChats } = ChatState()
     const [search, setSearch] = useState('');
     const [users, setUsers] = useState([]);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -43,6 +43,8 @@ export default function NavBar() {
 
     const logoutHandler = () => {
         localStorage.removeItem('chat_app');
+        setSelectedChat('');
+        setChats('');
         navigate('/')
     }
 

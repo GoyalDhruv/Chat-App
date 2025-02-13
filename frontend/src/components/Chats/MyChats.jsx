@@ -7,15 +7,16 @@ import Box from '@mui/material/Box';
 import SkeletonLoader from '../loader/SkeletonLoader';
 import { Stack } from '@mui/material';
 import GroupChatModal from './GroupChatModal';
+import { getSender } from '../../utils/utils';
 
-function MyChats() {
+function MyChats({ fetchAgain }) {
 
     const [loggedUser, setLoggedUser] = useState()
     const { selectedChat, setSelectedChat, chats, setChats } = ChatState();
 
-    const fetchChat = async (userId) => {
+    const fetchChat = async () => {
         try {
-            const { data } = await fetchChats(userId);
+            const { data } = await fetchChats(loggedUser);
             setChats(data);
         } catch (error) {
             toast.error("Error in fetching the chat");
@@ -25,17 +26,13 @@ function MyChats() {
 
     useEffect(() => {
         setLoggedUser(JSON.parse(localStorage.getItem("chat_app")))
-    }, [])
+    }, [fetchAgain])
 
     useEffect(() => {
         if (loggedUser) {
             fetchChat()
         }
-    }, [loggedUser])
-
-    const getSender = (loggedUser, users) => {
-        return users[0]._id === loggedUser.id ? users[1].name : users[0].name
-    }
+    }, [loggedUser, fetchAgain])
 
     return (
         <Box
@@ -79,7 +76,7 @@ function MyChats() {
                         ))}
                     </Stack>
                     :
-                    <SkeletonLoader number={8}/>
+                    <SkeletonLoader number={8} />
                 }
             </Box>
         </Box>
