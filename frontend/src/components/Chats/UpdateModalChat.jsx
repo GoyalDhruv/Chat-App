@@ -8,7 +8,7 @@ import { addNewUserToGroupChat, removeUserFromGroupChat, renameGroupChat } from 
 import { getUserBySearch } from '../../services/userApi';
 import SkeletonLoader from '../loader/SkeletonLoader';
 
-function UpdateModalChat({ fetchAgain, setFetchAgain }) {
+function UpdateModalChat({ fetchAgain, setFetchAgain, fetchMessages }) {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -53,6 +53,7 @@ function UpdateModalChat({ fetchAgain, setFetchAgain }) {
             toast.success('User removed successfully');
             USERID === user?.id ? setSelectedChat("") : setSelectedChat(data);
             setFetchAgain(!fetchAgain);
+            fetchMessages()
             handleClose();
         } catch (error) {
             toast.error("Error in removing the user");
